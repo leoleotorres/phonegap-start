@@ -4,11 +4,42 @@
 run(function () {
     // immediately invoked on first run
     var init = (function () {
-        if (navigator.network.connection.type == Connection.NONE) {
+       if (navigator.network.connection.type == Connection.NONE) {
             alert("No internet connection - we won't be able to show you any maps or stocks");
         } else {
             alert("We can reach the Interwebz - get ready for some awesome maps and real-time goodness!");
         }
+        
+        
+        var lsClient = new LightstreamerClient("http://push.lightstreamer.com","DEMO");
+        lsClient.addListener({
+          onStatusChange: function(newStatus) {
+            x$("#connection_status").html(newStatus);
+          }
+        });
+        lsClient.connect();
+
+        var grid = new DynaGrid("stocks",true);
+        grid.setSort("stock_name");
+        grid.addListener({
+          onVisualUpdate: function(key,info) {
+            if (info == null) {
+              return; //cleaning
+            }
+            info.setHotTime(500);
+            info.setHotToColdTime(300);
+            info.setAttribute("#F7941E", "transparent", "backgroundColor");
+            info.setAttribute("white", "black", "color");
+          }
+        });
+        
+        var sub = new Subscription("MERGE",["item3","item4","item5","item6","item7"],grid.extractFieldList()); 
+        sub.addListener(grid);
+        sub.setDataAdapter("QUOTE_ADAPTER");
+        sub.setRequestedSnapshot("yes");
+
+        lsClient.subscribe(sub);
+        
     })();
     
     // a little inline controller
@@ -55,4 +86,3 @@ run(function () {
         display('#welcome');
     });
 });
-

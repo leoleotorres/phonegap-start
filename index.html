@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-    <title>Training App</title>
+    <title>PhoneGap+Lightstreamer</title>
     <link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen" />
     
     <script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
@@ -17,13 +17,17 @@
     
     <script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
     
+    <script src="assets/js/lightstreamer.js" type="text/javascript" charset="utf-8"></script>
+    
     <script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
     
     <script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
     
   </head>
   <body>
-     <div id="title_bar">Phone<strong>Gap</strong> Training App</div>
+    <div id="title_bar">Phone<strong>Gap</strong> + <img id="lslogo" src="assets/img/lslogo.png"/></div>
+    
+    <div id="connection_status">DISCONNECTED</div>
 
     <div id="welcome" class="view">
       <div class="app_button" data-target="map">Show My Location</div>
@@ -32,13 +36,19 @@
     </div>
     
     <div id="sld" class="view">
-      OH HAI!
-       <div class="app_button" data-target="welcome">Go Back</div>
+      <ul>
+        <li id="stocks" data-source="lightstreamer">
+          <span class="stock_name" data-source="lightstreamer" data-field="stock_name"></span>
+          <span class="last_price" data-source="lightstreamer" data-field="last_price"></span>
+        </li>
+      </ul>
+      
+      <div class="app_button" data-target="welcome">Go Back</div>
     </div>
 
     <div id="map" class="view">
       <div class="map_image">
-              <img id="static_map" src="assets/img/staticmap.png">
+        <img id="static_map" src="assets/img/staticmap.png">
       </div>
       <p>This is where you are</p>
       <div class="app_button" data-target="welcome">Go Back</div>
@@ -48,20 +58,20 @@
       <form id="settings_form">
         <fieldset>
           <legend>Map Type</legend>
-        <input type="radio" name="map" value="roadmap" checked>Road Map<br/>
+          <input type="radio" name="map" value="roadmap" checked>Road Map<br/>
           <input type="radio" name="map" value="satellite">Satellite<br/>
           <input type="radio" name="map" value="terrain">Terrain<br/>
           <input type="radio" name="map" value="hybrid">Hybrid<br/>
         </fieldset>
         <fieldset>
           <legend>Zoom Level</legend>
-            <input type="radio" name="zoom" value="10">Super Far<br/>
-            <input type="radio" name="zoom" value="12">Far<br/>
-            <input type="radio" name="zoom" value="15" checked>Normal<br/>
-            <input type="radio" name="zoom" value="18">Close<br/>
-            <input type="radio" name="zoom" value="20">Super Close<br/>
-           </fieldset>
-          <button data-target="save">Save</button>
+          <input type="radio" name="zoom" value="10">Super Far<br/>
+          <input type="radio" name="zoom" value="12">Far<br/>
+          <input type="radio" name="zoom" value="15" checked>Normal<br/>
+          <input type="radio" name="zoom" value="18">Close<br/>
+          <input type="radio" name="zoom" value="20">Super Close<br/>
+         </fieldset>
+         <button data-target="save">Save</button>
         </form>
     </div>
 

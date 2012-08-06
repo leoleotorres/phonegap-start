@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-#title_bar {
+#title_bar, #connection_status {
   /* need a position set to something for z-index to take effect */
   position: relative;
   z-index: 1;
@@ -21,6 +21,38 @@ body {
   padding: 0;
   -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.3);
   box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+
+#lslogo {
+  padding-top: 9px;
+}
+
+.stock_name {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  padding: 0 5px;
+ 
+  width: 180px;
+  text-align: left;
+  float:left;
+}
+.last_price {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  padding: 0 5px;
+ 
+  width: 30px;
+  
+}
+
+ul {
+  width: 250px;
+  margin-left: auto;   
+  margin-right: auto;
+  padding-left: 0;
+}
+li {
+ list-style: none;
 }
 
 .app_button, button {
