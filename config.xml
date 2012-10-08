@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
-	id		= "com.phonegap.getting.started"
+	id		= "com.lightstreamer.phonegap.start"
 	version 	= "1.0.0">
 
 	<name>PhoneGap: Getting Started</name>
@@ -10,7 +10,7 @@
 		A template for getting started with PhoneGap development and build.phonegap.com
 	</description>
 
-	<author href="https://github.com/Mone"
+	<author href="https://github.com/mone"
 		email="simone.fabiano@lightstreamer.com">
 		Mone
 	</author>
